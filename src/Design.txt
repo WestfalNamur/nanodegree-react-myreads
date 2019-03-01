@@ -1,0 +1,16 @@
+Views:
+	- '/'
+		- NavBar
+		- Dashboard
+			- Bookshelfs
+				- BookCards
+
+	- '/addbook'
+		- SearchScreen
+			- BookCards
+
+Store:
+	- lives in components, no readux, MobX etc.
+
+Requirements:
+	- 
