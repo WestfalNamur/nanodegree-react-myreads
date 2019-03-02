@@ -23,12 +23,14 @@ class App extends Component {
     }))
   }
 
-  moveToRead = (book) => {
-    console.log('moveToRead was invoced')
+  handleSelectShelf = (event, book) => {
+    //console.log(`${event.target.value}`, book)
+    const { value } = event.target
+    console.log(`${value}`)
     this.setState((currentState) => ({
       books: currentState.books.map((b) => 
-        b.id === book.id 
-          ? Object.assign(b, { shelf: 'read' })
+        b.id === book.id
+          ? Object.assign(b, { shelf: value })
           : b
       )
     }))
@@ -41,6 +43,9 @@ class App extends Component {
           books={this.state.books}
           removeBook={this.removeBook}
           moveToRead={this.moveToRead}
+          movetToCurrentlyReading={this.movetToCurrentlyReading}
+          moveToWantToRead={this.moveToWantToRead}
+          handleSelectShelf={this.handleSelectShelf}
           />
       </div>
     );

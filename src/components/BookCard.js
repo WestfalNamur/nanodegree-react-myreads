@@ -16,19 +16,14 @@ class BookCard extends Component {
                       `url(${book.imageLinks.smallThumbnail})`}}>
                   </div>
                   <div className="book-shelf-changer">
-                    <select>
+                    <select 
+                      value={book.shelf}
+                      onChange={ event => this.props.handleSelectShelf(event, book)}>
                       <option value="move" disabled>Move to...</option>
                       <option value="currentlyReading">Currently Reading</option>
                       <option value="wantToRead">Want to Read</option>
                       <option value="read">Read</option>
-                      <option 
-                        value="none"
-                        onClick={() => this.props.removeBook((book))}>Trash
-                      </option>
-                      <option value="none">None</option>
                     </select>
-                      <button onClick={() => this.props.moveToRead((book))}>
-                      moveToRead</button>
                   </div>
                 </div>
                 <div className="book-title">{book.title}</div>
@@ -43,5 +38,3 @@ class BookCard extends Component {
 }
 
 export default BookCard
-
-// onChange={() => this.props.removeBook((book))}>Trash</option>
