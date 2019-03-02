@@ -13,4 +13,4 @@ Store:
 	- lives in components, no readux, MobX etc.
 
 Requirements:
-	- 
+	- react-router-dom

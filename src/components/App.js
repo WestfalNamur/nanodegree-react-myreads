@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import * as BooksAPI from '../utils/BooksAPI'
 import Dashboard from './Dashboard'
+import AddBook from './AddBook'
+import  { Route } from 'react-router-dom'
 
 class App extends Component {
   state = {
@@ -24,7 +26,6 @@ class App extends Component {
   }
 
   handleSelectShelf = (event, book) => {
-    //console.log(`${event.target.value}`, book)
     const { value } = event.target
     console.log(`${value}`)
     this.setState((currentState) => ({
@@ -36,17 +37,26 @@ class App extends Component {
     }))
   }
 
+  addBookToShelf = (event, book) => {
+    const { shelf } = event.target
+    console.log(`${shelf}`)
+    BooksAPI.update(book, `${shelf}`)
+      .then(res => {
+        console.log(res)
+      })
+  }
+
   render() {
     return (
       <div className="App">
-        <Dashboard
-          books={this.state.books}
-          removeBook={this.removeBook}
-          moveToRead={this.moveToRead}
-          movetToCurrentlyReading={this.movetToCurrentlyReading}
-          moveToWantToRead={this.moveToWantToRead}
-          handleSelectShelf={this.handleSelectShelf}
-          />
+        <Route exact path='/' render={() => (
+          <Dashboard
+            books={this.state.books}
+            handleSelectShelf={this.handleSelectShelf}
+          /> )} />
+        <Route exact path='/addbook' render={() => (
+          <AddBook addBookToShelf={this.addBookToShelf}/> 
+          )} />
       </div>
     );
   }
