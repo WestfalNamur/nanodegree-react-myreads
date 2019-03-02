@@ -10,7 +10,7 @@ Views:
 			- BookCards
 
 Store:
-	- lives in components, no readux, MobX etc.
+	- Store lives at the backend and gets updated via APICalls
 
 Requirements:
 	- react-router-dom

@@ -13,10 +13,10 @@ class App extends Component {
     BooksAPI.getAll()
       .then(res => {
         this.setState({ books: res })
-        console.log(res)
       })
   }
 
+  /*
   removeBook = (book) => {
     this.setState((currentState) => ({
       books: currentState.books.filter((b) => {
@@ -36,13 +36,13 @@ class App extends Component {
       )
     }))
   }
+  */
 
-  addBookToShelf = (event, book) => {
-    const { shelf } = event.target
-    console.log(`${shelf}`)
-    BooksAPI.update(book, `${shelf}`)
+  bookToShelf = (event, book) => {
+    BooksAPI.update(book, `${event.target.value}`)
+    BooksAPI.getAll()
       .then(res => {
-        console.log(res)
+        this.setState({ books: res })
       })
   }
 
@@ -52,10 +52,10 @@ class App extends Component {
         <Route exact path='/' render={() => (
           <Dashboard
             books={this.state.books}
-            handleSelectShelf={this.handleSelectShelf}
+            bookToShelf={this.bookToShelf}
           /> )} />
         <Route exact path='/addbook' render={() => (
-          <AddBook addBookToShelf={this.addBookToShelf}/> 
+          <AddBook bookToShelf={this.bookToShelf}/> 
           )} />
       </div>
     );

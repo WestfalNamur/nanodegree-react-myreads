@@ -10,8 +10,7 @@ class Dashboard extends Component {
           <BookCard 
             books={this.props.books.filter(book =>
             book.shelf === 'currentlyReading')}
-            //removeBook={this.props.removeBook}
-            handleMoveTo={this.props.handleSelectShelf}
+            bookToShelf={this.props.bookToShelf}
             />
         </div>
         <div className="bookshelf">
@@ -19,8 +18,7 @@ class Dashboard extends Component {
           <BookCard 
             books={this.props.books.filter(book =>
             book.shelf === 'wantToRead')}
-            //removeBook={this.props.removeBook}
-            handleMoveTo={this.props.handleSelectShelf}
+            bookToShelf={this.props.bookToShelf}
             />
         </div>
         <div className="bookshelf">
@@ -28,8 +26,7 @@ class Dashboard extends Component {
           <BookCard 
             books={this.props.books.filter(book =>
             book.shelf === 'read')}
-            //removeBook={this.props.removeBook}
-            handleMoveTo={this.props.handleSelectShelf}
+            bookToShelf={this.props.bookToShelf}
             />
         </div>
       </div>

@@ -45,7 +45,7 @@ class AddBook extends Component {
         {this.state.books.length > 0 && (
           <BookCard
             books={this.state.books}
-            handleMoveTo={this.props.addBookToShelf}
+            bookToShelf={this.props.bookToShelf}
           />)}
       </div>
     )
