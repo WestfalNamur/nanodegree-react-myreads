@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import * as BooksAPI from '../utils/BooksAPI'
 import { Link } from 'react-router-dom'
 import BookCard from './BookCard'
-// import searchTerms from '../utils/SearchTerms'
 
 
 class AddBook extends Component {
@@ -31,22 +30,27 @@ class AddBook extends Component {
           })
 
     return (
-      <div>
-        <Link 
-          className='close-addbook'
-          to='/'
-        > close </Link>
-        <input 
-          types='text' 
-          placeholder='Booktitel' 
-          value={this.state.query}
-          onChange={(event) => this.updateQuery(event.target.value)}
-        />
-        {this.state.books.length > 0 && (
-          <BookCard
-            books={this.state.books}
-            bookToShelf={this.props.bookToShelf}
-          />)}
+      <div className="search-books">
+        <div className="search-books-bar">
+          <Link to='/'> 
+            <button className="close-search"> </button>
+          </Link>
+          <div className='search-books-input-wrapper'>
+            <input 
+              types='text' 
+              placeholder="Search by title or author" 
+              value={this.state.query}
+              onChange={(event) => this.updateQuery(event.target.value)}
+            />
+            {this.state.books.length > 0 && (
+              <div className="search-books-results">
+                <BookCard
+                  books={this.state.books}
+                  bookToShelf={this.props.bookToShelf}
+                />
+              </div>)}
+          </div>
+        </div>
       </div>
     )
   }

@@ -2,11 +2,12 @@ import React, { Component } from 'react'
 import * as BooksAPI from '../utils/BooksAPI'
 import Dashboard from './Dashboard'
 import AddBook from './AddBook'
-import  { Route } from 'react-router-dom'
+import { Route, Link } from 'react-router-dom'
 
 class App extends Component {
   state = {
-    books: []
+    books: [],
+    home: true 
   }
 
   componentDidMount(){
@@ -50,10 +51,18 @@ class App extends Component {
     return (
       <div className="App">
         <Route exact path='/' render={() => (
-          <Dashboard
-            books={this.state.books}
-            bookToShelf={this.bookToShelf}
-          /> )} />
+          <div>
+            <Dashboard
+              books={this.state.books}
+              bookToShelf={this.bookToShelf}
+            /> 
+            <div className="open-search">              
+              <Link to="/addbook">
+                   <button>Add a book</button>
+               </Link>
+            </div>
+          </div>
+          )} />
         <Route exact path='/addbook' render={() => (
           <AddBook bookToShelf={this.bookToShelf}/> 
           )} />
@@ -62,4 +71,6 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App
+
+// <Link to='/addbook'>Add a book</Link>
