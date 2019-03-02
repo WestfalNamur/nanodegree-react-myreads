@@ -3,6 +3,7 @@ import * as BooksAPI from '../utils/BooksAPI'
 import Dashboard from './Dashboard'
 import AddBook from './AddBook'
 import { Route, Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 class App extends Component {
   state = {
@@ -49,7 +50,10 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="app">
+        <div className="list-books-title">
+          <h1>MyReads</h1>
+        </div>
         <Route exact path='/' render={() => (
           <div>
             <Dashboard
@@ -71,6 +75,10 @@ class App extends Component {
   }
 }
 
+App.propTypes = {
+  books: PropTypes.object,
+  bookToShelf: PropTypes.func,
+}
+
 export default App
 
-// <Link to='/addbook'>Add a book</Link>

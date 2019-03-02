@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import BookCard from './BookCard'
+import PropTypes from 'prop-types'
 
 class Dashboard extends Component {
   render() {
@@ -32,6 +33,11 @@ class Dashboard extends Component {
       </div>
     )
   }
+}
+
+Dashboard.propTypes = {
+  books: PropTypes.array,
+  bookToShelf: PropTypes.func,
 }
 
 export default Dashboard

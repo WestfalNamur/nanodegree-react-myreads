@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import '../utils/App.css'
+import PropTypes from 'prop-types'
 
 class BookCard extends Component {
   render() {
@@ -37,6 +38,11 @@ class BookCard extends Component {
       </div>
     )
   }
+}
+
+BookCard.propTypes = {
+  book: PropTypes.object,
+  bookToShelf: PropTypes.func, 
 }
 
 export default BookCard

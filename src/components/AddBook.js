@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import * as BooksAPI from '../utils/BooksAPI'
 import { Link } from 'react-router-dom'
 import BookCard from './BookCard'
-
+import PropTypes from 'prop-types'
 
 class AddBook extends Component {
   state = {
@@ -54,6 +54,12 @@ class AddBook extends Component {
       </div>
     )
   }
+}
+
+AddBook.propTypes = {
+  query: PropTypes.string,
+  books: PropTypes.object,
+  bookToShelf: PropTypes.func,  
 }
 
 export default AddBook
