@@ -15,10 +15,33 @@ class App extends Component {
       })
   }
 
+  removeBook = (book) => {
+    this.setState((currentState) => ({
+      books: currentState.books.filter((b) => {
+        return b.id !== book.id
+      })
+    }))
+  }
+
+  moveToRead = (book) => {
+    console.log('moveToRead was invoced')
+    this.setState((currentState) => ({
+      books: currentState.books.map((b) => 
+        b.id === book.id 
+          ? Object.assign(b, { shelf: 'read' })
+          : b
+      )
+    }))
+  }
+
   render() {
     return (
       <div className="App">
-        <Dashboard books={this.state.books}/>
+        <Dashboard
+          books={this.state.books}
+          removeBook={this.removeBook}
+          moveToRead={this.moveToRead}
+          />
       </div>
     );
   }

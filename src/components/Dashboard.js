@@ -7,21 +7,29 @@ class Dashboard extends Component {
       <div className="list-books-content">
         <div className="bookshelf">
           <h2 className="bookshelf-title">Currently reading</h2>
-          <BookCard books={this.props.books.filter(book =>
-            book.shelf === 'currentlyReading'
-          )}/>
+          <BookCard 
+            books={this.props.books.filter(book =>
+            book.shelf === 'currentlyReading')}
+            removeBook={this.props.removeBook}
+            moveToRead={this.props.moveToRead}
+            />
         </div>
         <div className="bookshelf">
           <h2 className="bookshelf-title">Want to read</h2>
-          <BookCard books={this.props.books.filter(book =>
-            book.shelf === 'wantToRead'
-          )}/>
+          <BookCard 
+            books={this.props.books.filter(book =>
+            book.shelf === 'wantToRead')}
+            removeBook={this.props.removeBook}
+            moveToRead={this.props.moveToRead}
+            />
         </div>
         <div className="bookshelf">
           <h2 className="bookshelf-title">Read</h2>
-          <BookCard books={this.props.books.filter(book =>
-            book.shelf === 'read'
-          )}/>
+          <BookCard 
+            books={this.props.books.filter(book =>
+            book.shelf === 'read')}
+            removeBook={this.props.removeBook}
+            moveToRead={this.props.moveToRead}            />
         </div>
       </div>
     )
