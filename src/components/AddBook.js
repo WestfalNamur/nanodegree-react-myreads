@@ -12,7 +12,7 @@ class AddBook extends Component {
 
   updateQuery = (query) => {
     this.setState(() => ({
-      query: query.trim()
+      query: query
     }))
   }
 
@@ -25,8 +25,13 @@ class AddBook extends Component {
     const searchingBooks = this.state.query === ''
       ? []
       : BooksAPI.search(this.state.query)
-          .then(res => {
-            this.setState({ books: res })
+          .then(resSearch => {
+            BooksAPI.getAll()
+              .then(resAll => {
+                const booksInShelf = resSearch.id[resAll.id]
+                console.log(booksInShelf)
+                this.setState({ books: resAll })
+              })
           })
 
     return (

@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import * as BooksAPI from '../utils/BooksAPI'
 import Dashboard from './Dashboard'
 import AddBook from './AddBook'
-import { Route, Link } from 'react-router-dom'
+import { Route, Link, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import NoMatch from './NoMatch'
 
 class App extends Component {
   state = {
@@ -42,10 +43,12 @@ class App extends Component {
 
   bookToShelf = (event, book) => {
     BooksAPI.update(book, `${event.target.value}`)
-    BooksAPI.getAll()
-      .then(res => {
-        this.setState({ books: res })
-      })
+      .then(() =>
+        BooksAPI.getAll()
+          .then(res => {
+            this.setState({ books: res })
+          })
+      )
   }
 
   render() {
@@ -54,22 +57,25 @@ class App extends Component {
         <div className="list-books-title">
           <h1>MyReads</h1>
         </div>
-        <Route exact path='/' render={() => (
-          <div>
-            <Dashboard
-              books={this.state.books}
-              bookToShelf={this.bookToShelf}
-            /> 
-            <div className="open-search">              
-              <Link to="/addbook">
-                   <button>Add a book</button>
-               </Link>
+        <Switch>
+          <Route exact path='/' render={() => (
+            <div>
+              <Dashboard
+                books={this.state.books}
+                bookToShelf={this.bookToShelf}
+              /> 
+              <div className="open-search">              
+                <Link to="/addbook">
+                     <button>Add a book</button>
+                 </Link>
+              </div>
             </div>
-          </div>
-          )} />
-        <Route exact path='/addbook' render={() => (
-          <AddBook bookToShelf={this.bookToShelf}/> 
-          )} />
+            )} />
+          <Route exact path='/addbook' render={() => (
+            <AddBook bookToShelf={this.bookToShelf}/> 
+            )} />
+          <Route component={NoMatch} />
+        </Switch>
       </div>
     );
   }

@@ -1,5 +1,40 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Design
+Views:
+	- '/'
+		- NavBar
+		- Dashboard
+			- Bookshelfs
+				- BookCards
+
+	- '/addbook'
+		- SearchScreen
+			- BookCards
+
+Store:
+	- Store lives at the backend and gets updated via APICalls
+
+Requirements:
+	- react-router-dom
+
+## Install
+Install the application by cloning the repo, cd into it and run npm install. If
+sucessfull you can now run the app via npm start.
+
+/home shows three books shelfs listing books. There are four shelfs in total,
+currently reading, want to read, read and none. From whome only the first three
+are shown an /home. 
+Each book loaded form the API is located in one of the shelfs.
+By using the move the "move to" selector on a book the book gets moved to a
+different shelf. This works by changing the shelf-property of the book.
+Following this (as the state cahnges) the app rerenders and the book is shown
+within it's new shelf.
+
+/addbook lets you search for books from the backend. The move-to function here
+works the same as it does on /home.
+
+
 ## Available Scripts
 
 In the project directory, you can run:
