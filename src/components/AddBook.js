@@ -23,15 +23,21 @@ class AddBook extends Component {
 
   render() {
     const searchingBooks = this.state.query === ''
-      ? []
+      ? [] // when query clears books get's set to []
       : BooksAPI.search(this.state.query)
           .then(resSearch => {
             BooksAPI.getAll()
               .then(resAll => {
-                const booksInShelf = resSearch.id[resAll.id]
-                console.log(booksInShelf)
-                this.setState({ books: resAll })
-              })
+                resAll.map((b) => {
+                  resSearch.forEach((element, index) => {
+                    if(element.id === b.id) {
+                      resSearch[index] = b
+                    }
+                  })
+                })
+                this.setState({ books: resSearch })
+                console.log(resSearch)
+              })            
           })
 
     return (
