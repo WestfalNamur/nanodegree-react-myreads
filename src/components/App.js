@@ -72,7 +72,9 @@ class App extends Component {
             </div>
             )} />
           <Route exact path='/addbook' render={() => (
-            <AddBook bookToShelf={this.bookToShelf}/> 
+            <AddBook 
+              bookToShelf={this.bookToShelf}
+              books={this.state.books}/> 
             )} />
           <Route component={NoMatch} />
         </Switch>

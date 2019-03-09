@@ -28,15 +28,16 @@ class AddBook extends Component {
           .then(resSearch => {
             BooksAPI.getAll()
               .then(resAll => {
-                resAll.map((b) => {
-                  resSearch.forEach((element, index) => {
-                    if(element.id === b.id) {
-                      resSearch[index] = b
-                    }
+                if (resAll.length > 0) {
+                  resAll.map((b) => {
+                    resSearch.forEach((element, index) => {
+                      if(element.id === b.id) {
+                        resSearch[index] = b
+                      }
+                    })
                   })
-                })
-                this.setState({ books: resSearch })
-                console.log(resSearch)
+                  this.setState({ books: resSearch })
+                } else { this.setState({ books: [] }) }
               })            
           })
 
@@ -69,7 +70,7 @@ class AddBook extends Component {
 
 AddBook.propTypes = {
   query: PropTypes.string,
-  books: PropTypes.object,
+  books: PropTypes.array,
   bookToShelf: PropTypes.func,  
 }
 
