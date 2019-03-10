@@ -37,6 +37,7 @@ class AddBook extends Component {
                     })
                   })
                   this.setState({ books: resSearch })
+                  console.log(resSearch)
                 } else { this.setState({ books: [] }) }
               })            
           })
