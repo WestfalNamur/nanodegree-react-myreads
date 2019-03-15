@@ -22,10 +22,12 @@ class AddBook extends Component {
   } 
 
   render() {
-    const searchingBooks = this.state.query === ''
-      ? [] // when query clears books get's set to []
-      : BooksAPI.search(this.state.query)
-          .then(resSearch => {
+    if (this.state.query !== '') {
+      BooksAPI.search(this.state.query)
+        .then(resSearch => {
+          if (resSearch.error !== undefined) {
+            this.setState({ books: [] })
+          } else {
             BooksAPI.getAll()
               .then(resAll => {
                 if (resAll.length > 0) {
@@ -37,10 +39,11 @@ class AddBook extends Component {
                     })
                   })
                   this.setState({ books: resSearch })
-                  console.log(resSearch)
                 } else { this.setState({ books: [] }) }
-              })            
-          })
+              })
+          }
+        })
+    }
 
     return (
       <div className="search-books">
